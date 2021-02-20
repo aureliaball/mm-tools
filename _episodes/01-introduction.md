@@ -228,7 +228,7 @@ The last line tells OpenMM we are done telling it about the ForceField. We have 
 > |"outer" H atom (nonbonded) | $$q_{H} = 0.0324e$$, $$\alpha_{H}$$ and $$\epsilon_{H}$$ same as ethane|
 > |"inner" H atom (nonbonded) | $$q_{H} = 0.0387e$$, $$\alpha_{H}$$ and $$\epsilon_{H}$$ same as ethane|
 >
-> Copy this XML File, butane.gaff2.xml, from /data/chem_shared/tutorial_files/ to get started
+> Copy this XML File, butane_template.gaff2.xml, from /data/chem_shared/tutorial_files/ to get started
 > ~~~
 > <ForceField>
 >  <AtomTypes>
