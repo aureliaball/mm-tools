@@ -24,6 +24,8 @@ keypoints:
 
  <script src="https://unpkg.com/ngl@0.10.4/dist/ngl.js"></script>
 
+This website is a customized version of the [MolSSI Molecular Mechancs Tools workshop](https://education.molssi.org/mm-tools/) created for the [Skidmore Computational Biophysics Lab](https://academics.skidmore.edu/blogs/computationalbiophysicslab/). All others should visit the original MolSSI site.
+
 ## What does "molecular mechanics" mean?
 
 Computational chemistry is a field which uses calculations performed on computers to predict real world properties of molecules. Because we can't have "real" molecules in a computer, we have to approximate their behavior using mathematical models in simulations. Within the field of computational chemistry, the types of simulation are grouped into two broad categories based on the type of physics the models are based on. Quantum chemistry simulations are based on quantum mechanics (Schrodinger's equation if you have taken quantum chemistry). The other broad category of computational chemistry is based on **molecular mechanics**, or classical(Newtonian) physics. This is essentially the same kind of physics you learn in introductory physics course where you might predict the path of a ball thrown through the air. 
