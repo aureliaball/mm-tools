@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Introduction to Molecular Mechanics"
 teaching: 40
 exercises: 20
 questions:
