@@ -3,7 +3,7 @@ layout: lesson
 root: .  # Is the only page that doesn't follow the pattern /:path/index.html
 permalink: index.html  # Is the only page that doesn't follow the pattern /:path/index.html
 ---
-This website is a customized version of the [MolSSI Molecular Mechancs Tools workshop](https://education.molssi.org/mm-tools/) created for the [Skidmore Computational Biophysics Lab] (https://academics.skidmore.edu/blogs/computationalbiophysicslab/). All others should visit the original MolSSI site.
+This website is a customized version of the [MolSSI Molecular Mechancs Tools workshop](https://education.molssi.org/mm-tools/) created for the [Skidmore Computational Biophysics Lab](https://academics.skidmore.edu/blogs/computationalbiophysicslab/). All others should visit the original MolSSI site.
 
 The mm-tools workshop introduces molecular dynamics simulations using the software OpenMM, and analysis of simulation results using MDTraj. The theoretical background of MD simulations are discussed, and students simulate and analyze alkane and a simple protein system. This workshop also covers putting code on GitHub and includes an exercise where students implement a new software feature and submit a pull request.
 
