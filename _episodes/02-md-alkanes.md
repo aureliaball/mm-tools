@@ -58,17 +58,12 @@ Usually a simulation protocol follow this general procedure:
 
 We will now use OpenMM to do a molecular dynamics simulation of the ethane and butane molecules we prepared in the previous lesson. It's important to note at this point that molecular dynamics simulations can be performed using a number of softwares. However, we will be running a simulation with a program called OpenMM. OpenMM has the advantage of being scriptable with Python.
 
-We will first have to make sure we have OpenMM installed. If you are using anaconda, install OpenMM by typing the following command into your terminal or the Anaconda prompt:
-
-~~~
-$ conda install -c omnia openmm
-~~~
-{: .language-bash}
+First, sign on to pugetsoundand open a jupyter notebook. Name your notebook ethane_BasicMD_OpenMM.
 
 
 ### Simulation Initialization
 
-Once you have OpenMM, we can use it to simulate our molecules. Open a jupyter notebook to run this code. 
+Now we can use OpenMM to simulate our molecules. Open a jupyter notebook to run this code. 
 
 Start in your notebook with imports. Here are the python libraries you will need to run simulations with OpenMM.
 
