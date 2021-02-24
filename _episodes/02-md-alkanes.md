@@ -286,7 +286,7 @@ simulation.reporters.append(app.DCDReporter('ethane_sim.dcd', 100))
 
 This reporter saved the atomic positions for us every 100 timesteps in a file called `ethane_sim.dcd`. The DCD file format is a binary file (instead of being a text file), so you cannot open it and look at it. However, we will be using certain libraries to analyze and view the file's contents. If you've run your simulation, you should have the file `ethane_sim.dcd` in the same folder as your Jupyter notebook. 
 
-First, we will need to make sure we have a few more Python libraries installed which can help us with analysis. We will use a library called [nglview](http://nglviewer.org/nglview/latest/api.html) to visualize the trajectory, and a library called [MDTraj](http://mdtraj.org/1.9.3/) to analyze the trajectory.
+We will use a library called [nglview](http://nglviewer.org/nglview/latest/api.html) to visualize the trajectory, and a library called [MDTraj](http://mdtraj.org/1.9.3/) to analyze the trajectory.
 
 Open a new Jupyter notebook to do the analysis of your ethane trajectory. Name this notebook `ethane_TrajectoryAnalysis_MDTraj.ipynb`
 
