@@ -192,7 +192,7 @@ print('Time required for simulation:', tfinal-tinit, 'seconds')
 
 > ## Your Turn - Simulation of Butane
 >
-> Make a copy of the code you wrote to run your ethane simulation. Modify this code to:
+> Make a copy of the notebook you wrote to run your ethane simulation and call it `butane_BasicMD_OpenMM`. Modify this code to:
 > 1. Read in the files `butane.gaff2.xml` and `butane.pdb`
 > 1. Carry out a 10 ps MD simulation to bring the butane molecule to an equilibrium temperature of 298 K in which output is printed every 0.5 ps (Leave the minimization portion beforehand unchanged.)
 > 1. Carry out a 40 ns MD simulation at 298 K in which output is printed every 1 ns and structures are (still) saved every 0.2 ps into a file called `butane_sim.dcd`.
@@ -286,15 +286,7 @@ simulation.reporters.append(app.DCDReporter('ethane_sim.dcd', 100))
 
 This reporter saved the atomic positions for us every 100 timesteps in a file called `ethane_sim.dcd`. The DCD file format is a binary file (instead of being a text file), so you cannot open it and look at it. However, we will be using certain libraries to analyze and view the file's contents. If you've run your simulation, you should have the file `ethane_sim.dcd` in the same folder as your Jupyter notebook. 
 
-First, we will need to make sure we have a few more Python libraries installed which can help us with analysis. We will use a library called [nglview](http://nglviewer.org/nglview/latest/api.html) to visualize the trajectory, and a library called [MDTraj](http://mdtraj.org/1.9.3/) to analyze the trajectory. Before opening a new notebook for analysis, you may need to install nglview and MDTraj. 
-
-Type the following in your terminal to install nglview and MDTraj:
-
-~~~
-$ pip install nglview
-$ conda install -c conda-forge mdtraj
-~~~
-{: .language-bash}
+First, we will need to make sure we have a few more Python libraries installed which can help us with analysis. We will use a library called [nglview](http://nglviewer.org/nglview/latest/api.html) to visualize the trajectory, and a library called [MDTraj](http://mdtraj.org/1.9.3/) to analyze the trajectory.
 
 Open a new Jupyter notebook to do the analysis of your ethane trajectory. Name this notebook `ethane_TrajectoryAnalysis_MDTraj.ipynb`
 
@@ -551,7 +543,7 @@ plt.show()
 
 
 > ## Your Turn - Analysis of Butane Trajectory
-> Create a copy of your ethane analysis code and modify your code to analyze your butane trajectory.
+> Create a copy of your ethane analysis notebook and call it `butane_TrajectoryAnalysis_MDTraj`. Modify your code to analyze your butane trajectory.
 > 1. Read in the files `butane.pdb` and `butane_sim.dcd` and visualize using NGLview.
 > 1. Analyze the C-C-C-C torsion angle and compute the PMF.
 > 1. Analyze the C-C-C bond angle (use either C1-C2-C3 or C2-C3-C4) and compute the PMF.
