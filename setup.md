@@ -23,7 +23,7 @@ conda install -c omnia openmm
 {: .language-bash}
 
 ## Obtain lesson materials
-1. Doownloadthe lesson materials [here](./data/data.zip).
+1. Download the lesson materials [here](./data/data.zip).
 2. Create a folder called `mm-tools` on your Desktop.
 3. Move the downloaded materials to the new folder.
 4. Unzip the file.  
