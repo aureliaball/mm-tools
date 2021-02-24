@@ -58,7 +58,7 @@ Usually a simulation protocol follow this general procedure:
 
 We will now use OpenMM to do a molecular dynamics simulation of the ethane and butane molecules we prepared in the previous lesson. It's important to note at this point that molecular dynamics simulations can be performed using a number of softwares. However, we will be running a simulation with a program called OpenMM. OpenMM has the advantage of being scriptable with Python.
 
-First, sign on to pugetsoundand open a jupyter notebook. Name your notebook ethane_BasicMD_OpenMM.
+First, sign on to pugetsound and copy the files `ethane.pdb` and `butane.pdb` from `/data/chem_shared/tutorials/`. Open a jupyter notebook and name it `ethane_BasicMD_OpenMM`.
 
 
 ### Simulation Initialization
@@ -296,7 +296,7 @@ $ conda install -c conda-forge mdtraj
 ~~~
 {: .language-bash}
 
-Open a new Jupyter notebook to do the analysis of your ethane trajectory.
+Open a new Jupyter notebook to do the analysis of your ethane trajectory. Name this notebook `ethane_TrajectoryAnalysis_MDTraj.ipynb`
 
 First, we will load in our trajectory using MDTraj
 
