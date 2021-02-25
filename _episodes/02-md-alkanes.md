@@ -104,7 +104,7 @@ integrator.setConstraintTolerance(1e-5)
 Finally, we initialize the simulation by adding all of the pieces we have prepared:
 
 ~~~
-platform = mm.Platform.getPlatformByName('Reference')
+platform = mm.Platform.getPlatformByName('CUDA')
 simulation = app.Simulation(pdb.topology, system, integrator, platform)
 simulation.context.setPositions(pdb.positions)
 ~~~
@@ -215,7 +215,7 @@ print('Time required for simulation:', tfinal-tinit, 'seconds')
 >>                                    2.0*unit.femtoseconds)
 >> integrator.setConstraintTolerance(1e-5)
 >> 
->> platform = mm.Platform.getPlatformByName('Reference')
+>> platform = mm.Platform.getPlatformByName('CUDA')
 >> simulation = app.Simulation(pdb.topology, system, integrator, platform)
 >> simulation.context.setPositions(pdb.positions)
 >> ~~~
