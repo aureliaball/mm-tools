@@ -58,7 +58,7 @@ Usually a simulation protocol follow this general procedure:
 
 We will now use OpenMM to do a molecular dynamics simulation of the ethane and butane molecules we prepared in the previous lesson. It's important to note at this point that molecular dynamics simulations can be performed using a number of softwares. However, we will be running a simulation with a program called OpenMM. OpenMM has the advantage of being scriptable with Python.
 
-First, sign on to pugetsound and copy the files `ethane.pdb` and `butane.pdb` from `/data/chem_shared/tutorials/`. Open a jupyter notebook and name it `ethane_BasicMD_OpenMM`.
+First, sign on to pugetsound and copy the files `ethane.pdb` and `butane.pdb` from `/data/chem_shared/tutorial_files/`. Open a jupyter notebook and name it `ethane_BasicMD_OpenMM`.
 
 
 ### Simulation Initialization
