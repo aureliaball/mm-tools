@@ -15,6 +15,9 @@ keypoints:
 - "Identifying the relevant bond lengths and angles to analyze and graph is an important part of analyzing a molecular dynamics simulation."
 - "Landmark simulations from the early days of molecular dynamics can now be completed in a few minutes on modern laptops."
 ---
+
+This website is a customized version of the [MolSSI Molecular Mechancs Tools workshop](https://education.molssi.org/mm-tools/) created for the [Skidmore Computational Biophysics Lab](https://academics.skidmore.edu/blogs/computationalbiophysicslab/). All others should visit the original MolSSI site.
+
 ## Introduction
 
 In this lesson we will carry out an MD simulation of the protein bovine pancreatic trypsin inhibitor (BPTI). This was one of the first proteins to ever be simulated in its entirety, and the results of this simulation – that at its time was a computational tour de force – can be found in a Nature article from 1977 by Andy McCammon, Bruce Gelin, and Martin Karplus (co-recipient of the 2013 Nobel Prize in Chemistry).  We will carry out a very similar simulation in just a few minutes!
