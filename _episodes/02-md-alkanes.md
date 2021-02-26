@@ -19,6 +19,8 @@ keypoints:
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
+This website is a customized version of the [MolSSI Molecular Mechancs Tools workshop](https://education.molssi.org/mm-tools/) created for the [Skidmore Computational Biophysics Lab](https://academics.skidmore.edu/blogs/computationalbiophysicslab/). All others should visit the original MolSSI site.
+
 ## What are molecular dynamics simulations?
 
 Now that we have our force field defined, we are ready to do a simulation! But, what does that mean and what kind of simulation will we be doing? We will use a simulation method called **molecular dynamics** (MD). In molecular dynamics simulations, we simulate molecules in time by calculating the forces on atoms and updating their positions based on those forces. The output of a molecular dynamics simulation is a trajectory. This is commonly written to a file on the computer where the calculation is running. The trajectory file contains atomic positions for points in time. The trajectory can be visualized to show the movement of a system through time (like watching a movie).
