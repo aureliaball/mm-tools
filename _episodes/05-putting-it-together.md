@@ -15,6 +15,9 @@ keypoints:
 - "Use online documentation from coding projects to learn about existing functions and features when you are trying to change existing code."
 - "When you write new code, always document your functions so that other people will be able to understand and build on your work."
 ---
+
+This website is a customized version of the [MolSSI Molecular Mechancs Tools workshop](https://education.molssi.org/mm-tools/) created for the [Skidmore Computational Biophysics Lab](https://academics.skidmore.edu/blogs/computationalbiophysicslab/). All others should visit the original MolSSI site.
+
 In this lesson, you will use all of the skills you have used in the previous lessons to make changes to an existing code and share those changes with others.  You will fork an existing repository to your GitHub and then clone that repository to your own computer.  The repository contains an OpenMM script.  You will implement a new feature into the script, commit your changes, and the create a PR to commit your changes to the original repository.  
 
 ## Fork the original GitHub repository to your personal account
