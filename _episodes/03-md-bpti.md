@@ -103,7 +103,7 @@ system = prmtop.createSystem(nonbondedMethod=app.NoCutoff, constraints=None)
 integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
     1.0*unit.femtoseconds)
 
-platform = mm.Platform.getPlatformByName('CPU')
+platform = mm.Platform.getPlatformByName('CUDA')
 simulation = app.Simulation(prmtop.topology, system, integrator, platform)
 simulation.context.setPositions(inpcrd.positions)
 ~~~
