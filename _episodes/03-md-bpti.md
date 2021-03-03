@@ -26,14 +26,21 @@ In this lesson we will carry out an MD simulation of the protein bovine pancreat
 
 The X-ray crystal structures (and NMR-derived structures) of many folded proteins can be found at the [Protein Data Bank](http://www.rcsb.org). Every structure deposited in the PDB has a four character code; for this exercise we will use the structure 4PTI. This structure was deposited in 1982 (!), but has excellent resolution (1.5 Å) and provides a good starting point for our simulation.
 
-Taking a structure from the PDB and getting it ready for simulation is not a trivial task. For us to carry out a gas phase simulation of this protein, crystallographic waters must be removed and disulfide bonds between various cysteine residues must be specified. Thankfully there are applications that help to automate this task. In this particular case, the application pdb4amber (part of the [AmberTools distribution](http://www.ambermd.org) was used to generate an appropriate [pdb file](../data/bpti_gas.pdb). Then another AmberTools application, tleap, was used to create a [parameter/topology file](../data/bpti_gas.prmtop) and a [starting coordinate](../data/bpti_gas.inpcrd) files that can be understood by Amber or OpenMM.  If you want to learn more about how to use these tools, see the yellow box below, but you can also just download all three of these files from the [data folder](../data). For this exercise, we will be using the Amber ff14SB protein force field.
+Taking a structure from the PDB and getting it ready for simulation is not a trivial task. For us to carry out a gas phase simulation of this protein, crystallographic waters must be removed and disulfide bonds between various cysteine residues must be specified. Thankfully there are applications that help to automate this task. In this particular case, the application pdb4amber (part of the [AmberTools distribution](http://www.ambermd.org) was used to generate an appropriate [pdb file](../data/bpti_gas.pdb). Then another AmberTools application, tleap, was used to create a [parameter/topology file](../data/bpti_gas.prmtop) and a [starting coordinate](../data/bpti_gas.inpcrd) files that can be understood by Amber or OpenMM.  If you want to learn more about how to use these tools, see the yellow box below, but you can also just copy all three of these files from the chem_shared directory. 
+
+> ~~~
+> cp /data/chem_shared/tutorial_files/bpti_* ./
+> ~~~
+
+For this exercise, we will be using the Amber ff14SB protein force field.
 
 > ## Getting the PDB file ready for the simulation
-> To prepare the initial parameter/topology file and the input coordinate file, you will need AmberTools18 installed on your computer.  
+> To prepare the initial parameter/topology file and the input coordinate file, you will need AmberTools18.  
 > - Download the file 4PTI.pdb from the PDB website into the directory of your choice.
-> - In a terminal window, change to that directory and type the following command:
+> - In a terminal window, change to that directory and type the following commands:
 >
 > ~~~
+> module load amber18/18
 > pdb4amber -i 4PTI.pdb -o 4PTI_withCYX.pdb --dry --nohyd
 > ~~~
 > {: .language-bash}
@@ -62,6 +69,14 @@ Taking a structure from the PDB and getting it ready for simulation is not a tri
 
 ## MD simulation protocol
 Before you begin, make sure the pdb file, parameter/topology file, and the starting coordinate file are in the same directory as your jupyter notebook where you plan to run the simulation.
+
+First, sign on to pugetsound and copy the files `ethane.pdb` and `butane.pdb` from `/data/chem_shared/tutorial_files/`. 
+Sign on to a compute node by typing `srun --partition=Legacy_Nodes --pty --nodes=1 --tasks-per-node=1 --gres=gpu:1 --time=10:00:00 --wait=0 --export=ALL /bin/bash`. Note the node you are signed on to by looking at the prompt (it should be a number from 1 to 8).
+
+Load the latest version of python by typing `module load anaconda3/python-3.7`.
+Open a jupyter notebook by typing `jupyter notebook --no-browser`. Note the local host number. In a separate terminal window on your local computer, log in to that jupyter notebook on the compute node by typing `ssh -L 8157:127.0.0.1:#### kball@cnode00#` where '####' is the local host number of your jupyter notebook and where 'cnode00#' is whichever node you are running the jupyter notebook on.
+Open a browser window and navigate to `http://localhost:8157/`.
+Open a new jupyter notebook and name it `ethane_BasicMD_OpenMM`.
 
 We will carry out a simulation protocol very similar to that of McCammon et al. (as well as our earlier exercises), with ​some​ modernized aspects to it:
 1. Up to 100 steps of energy minimization using the L-BFGS algorithm. [In the original study the authors performed 100 steps of MD with initial velocities set to zero/a starting temperature of 0 K.]
