@@ -26,7 +26,7 @@ In this lesson we will carry out an MD simulation of the protein bovine pancreat
 
 The X-ray crystal structures (and NMR-derived structures) of many folded proteins can be found at the [Protein Data Bank](http://www.rcsb.org). Every structure deposited in the PDB has a four character code; for this exercise we will use the structure 4PTI. This structure was deposited in 1982 (!), but has excellent resolution (1.5 Å) and provides a good starting point for our simulation.
 
-Taking a structure from the PDB and getting it ready for simulation is not a trivial task. For us to carry out a gas phase simulation of this protein, crystallographic waters must be removed and disulfide bonds between various cysteine residues must be specified. Thankfully there are applications that help to automate this task. In this particular case, the application pdb4amber (part of the [AmberTools distribution](http://www.ambermd.org) was used to generate an appropriate [pdb file](../data/bpti_gas.pdb). Then another AmberTools application, tleap, was used to create a [parameter/topology file](../data/bpti_gas.prmtop) and a [starting coordinate](../data/bpti_gas.inpcrd) files that can be understood by Amber or OpenMM.  If you want to learn more about how to use these tools, see the yellow box below, but you can also just copy all three of these files from the chem_shared directory. 
+Taking a structure from the PDB and getting it ready for simulation is not a trivial task. For us to carry out a gas phase simulation of this protein, crystallographic waters must be removed and disulfide bonds between various cysteine residues must be specified. Then, to run a simulation of this protein in water, we must add in water molecules. Thankfully there are applications that help to automate this task. In this particular case, the application pdb4amber (part of the [AmberTools distribution](http://www.ambermd.org) was used to generate an appropriate [pdb file](../data/bpti_gas.pdb). Then another AmberTools application, tleap, was used to create parameter/topology files and starting coordinate files that can be understood by Amber or OpenMM.  If you want to learn more about how to use these tools, see the yellow box below, but you can also just copy all five of these files from the chem_shared directory. 
 
 `cp /data/chem_shared/tutorial_files/bpti_* ./`
 
@@ -47,11 +47,18 @@ For this exercise, we will be using the Amber ff14SB protein force field.
 >
 > ~~~
 > source leaprc.protein.ff14SB
+> ffmodw = loadamberparams frcmod.ff99SB_w_dih
+> source leaprc.water.tip3p
+> loadamberparams frcmod.tip3pfb
 > bpti = loadpdb 4PTI_withCYX.pdb
 > bond bpti.5.SG bpti.55.SG
 > bond bpti.14.SG bpti.38.SG
 > bond bpti.30.SG bpti.51.SG
 > saveamberparm bpti bpti_gas.prmtop bpti_gas.inpcrd savepdb bpti bpti_gas.pdb
+> solvateoct bpti TIP3PBOX 10.0
+> addionsrand bpti Cl- 0
+> addionsrand bpti Na+ 0
+> saveamberparm bpti bpti_wat.prmtop bpti_wat.inpcrd
 > quit
 > ~~~
 >
