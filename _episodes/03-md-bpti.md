@@ -80,7 +80,7 @@ Sign on to a compute node by typing `srun --partition=Legacy_Nodes --pty --nodes
 Load the latest version of python by typing `module load anaconda3/python-3.7`.
 Open a jupyter notebook by typing `jupyter notebook --no-browser`. Note the local host number. In a separate terminal window on your local computer, log in to that jupyter notebook on the compute node by typing `ssh -L 8157:127.0.0.1:#### kball@cnode00#` where '####' is the local host number of your jupyter notebook and where 'cnode00#' is whichever node you are running the jupyter notebook on.
 Open a browser window and navigate to `http://localhost:8157/`.
-Open a new jupyter notebook and name it `BPTI_OpenMM`.
+Open a new jupyter notebook and name it `BPTI_gas_OpenMM`.
 
 We will carry out a simulation protocol very similar to that of McCammon et al. (as well as our earlier exercises), with ​some​ modernized aspects to it:
 1. Up to 100 steps of energy minimization using the L-BFGS algorithm. [In the original study the authors performed 100 steps of MD with initial velocities set to zero/a starting temperature of 0 K.]
@@ -224,6 +224,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 <img src="../fig/Figure3a.png" title="Figure 3a from McCammon, Gelin, and Karplus, ​Nature​ 1977." style="display: block; margin: auto;" />
 
 > ## Exercise
+> Create a new jupyter notebook called BPTI_gas_MDTraj.
 > Begin by once again importing the required libraries.
 >
 > ~~~
@@ -275,6 +276,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 > 1. Convert the N-H bond length from nm to Å and then plot the bond length vs. time over the same time interval as the N-Cα bond. How do the dynamics of this bond differ from those of the N-Cα bond? [Just by eyeballing the range of N-H bond lengths in this plot, the distribution of the N-H bond length should look ​very​ different from the C-H bond lengths in the butane simulation. What’s different about this simulation?]
 > 2. Convert the N-Cα-C bond angle from radians to degrees and then plot the bond angle vs. time over the same time interval.
 > 3. Convert the φ, ψ, and ω torsions from radians to degrees and then plot > them vs. time for 2.0 ps, also beginning with step 5000. You might notice that the ω torsion plot looks suboptimal because this torsion angle oscillates around ±180°. How might we fix it to look more human-readable?
+> 4. Copy your BPTI_gas_OpenMM notebook and call the new notebook BPTI_wat_OpenMM. Modify this notebook to run the same simulation, but this time on the BPTI protein in water. Compare the speed of this simulation to the BPTI in gas. What explains this difference? Complete the same analysis of the BPTI simulation in water. Do you notice any differences?
 >
 >> ## Solution
 >>
