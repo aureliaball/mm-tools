@@ -160,7 +160,7 @@ Done!
 For our production simulation, while we will save the coordinates to the trajectory file every 1 fs, we will print the energy in our jupyter notebook much mess frequently, so that we don't have 9000 lines printing!  Once the simulation is finished, the total time for the simulation will be printed.  Note that your computer may be faster or slower, so your total time will probably be different than the example given here.
 
 ~~~
-simulation.reporters.append(app.DCDReporter('BPTI_sim.dcd', 1))
+simulation.reporters.append(app.DCDReporter('BPTI_gas_sim_1.dcd', 1))
 simulation.reporters.append(app.StateDataReporter(stdout, 250, step=True, time=True,
     potentialEnergy=True, temperature=True, speed=True, separator='\t'))
 
@@ -168,6 +168,7 @@ tinit=time.time()
 print('Running Production...')
 simulation.step(9000)
 tfinal=time.time()
+simulation.saveState('BPTI_gas_sim_1.xml'))
 print('Done!')
 print('Time required for simulation:', tfinal-tinit, 'seconds')
 ~~~
