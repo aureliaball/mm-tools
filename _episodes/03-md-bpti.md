@@ -106,13 +106,15 @@ Specify the parameter/topology file and the initial coordinate file.  Again, mak
 prmtop = app.AmberPrmtopFile('BPTI_gas.prmtop')
 inpcrd = app.AmberInpcrdFile('BPTI_gas.inpcrd')
 
-system = prmtop.createSystem(nonbondedMethod=app.NoCutoff, constraints=None)
+system = prmtop.createSystem(nonbondedMethod=PME, nonbondedCutoff=1*nanometer, constraints=HBonds)
 integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
-    1.0*unit.femtoseconds)
+    2.0*unit.femtoseconds)
 
 platform = mm.Platform.getPlatformByName('CUDA')
 simulation = app.Simulation(prmtop.topology, system, integrator, platform)
 simulation.context.setPositions(inpcrd.positions)
+if inpcrd.boxVectors is not None:
+    simulation.context.setPeriodicBoxVectors(*inpcrd.boxVectors)
 ~~~
 {: .language-python}
 
