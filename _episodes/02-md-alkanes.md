@@ -496,6 +496,9 @@ where $$p(x)$$ is the probability, or the histogram we calculated previously.
 For our torsion angle, we can calculate and plot the PMF:
 
 ~~~
+import numpy as np
+import statsmodels as sm
+
 kB = 8.31446/1000 # Boltzmann constant in kJ/mol
 Temp = 298.15 # simulation temperature
 phicounts[phicounts==0] = 0.1 # get rid of any bins with 0 counts/infinite energy
