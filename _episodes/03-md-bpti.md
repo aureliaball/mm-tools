@@ -126,7 +126,7 @@ st = simulation.context.getState(getPositions=True,getEnergy=True)
 print("Potential energy before minimization is %s" % st.getPotentialEnergy())
 
 print('Minimizing...')
-simulation.minimizeEnergy(maxIterations=100)
+simulation.minimizeEnergy(maxIterations=1000)
 
 st = simulation.context.getState(getPositions=True,getEnergy=True)
 print("Potential energy after minimization is %s" % st.getPotentialEnergy())
