@@ -85,7 +85,7 @@ Open a new jupyter notebook and name it `BPTI_gas_OpenMM`.
 We will carry out a simulation protocol very similar to that of McCammon et al. (as well as our earlier exercises), with ​some​ modernized aspects to it:
 1. Up to 100 steps of energy minimization using the L-BFGS algorithm. [In the original study the authors performed 100 steps of MD with initial velocities set to zero/a starting temperature of 0 K.]
 2. A 1.0 ps MD simulation to bring the BPTI protein to an equilibrium temperature of 298 K (25 °C). [Original study: velocities from previous phase are multiplied by 1.5 and then 0.25 ps of equilibration in the NVE ensemble are performed, after which the system is at 285 K. This means the simulation was carried out without thermostatting and instead the total energy of the system – kinetic + potential – was conserved.]
-3. A 9.0 ps MD simulation at 298 K in which structures are saved ​every step​ (1 fs) into a file called ​BPTI_sim.dcd.​ [This is basically identical to the original study except that the original was again performed without thermostatting. Additional note: These days we usually do not save protein coordinates more frequently than once every 1 ps, but our simulations are typically 5-6 orders of magnitude longer than 40 years ago!]
+3. A 9.0 ps MD simulation at 298 K in which structures are saved ​every step​ (1 fs) into a file called ​BPTI_gas_sim_1.dcd.​ [This is basically identical to the original study except that the original was again performed without thermostatting. Additional note: These days we usually do not save protein coordinates more frequently than once every 1 ps, but our simulations are typically 5-6 orders of magnitude longer than 40 years ago!]
 
 ### Importing required python libraries
 First, import the required python as you did in the previous lesson.
@@ -240,7 +240,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 > Next use this code to identify all of the atoms that will be involved in the bond length, angle, and torsions we want to analyze.
 >
 > ~~~
-> traj = md.load('BPTI_sim.dcd', top='BPTI_gas.prmtop')
+> traj = md.load('BPTI_gas_sim_1.dcd', top='BPTI_gas.prmtop')
 > atoms, bonds = traj.topology.to_dataframe()
 > atoms[:10] # there are many more!
 >
