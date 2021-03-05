@@ -108,7 +108,7 @@ inpcrd = app.AmberInpcrdFile('BPTI_gas.inpcrd')
 
 system = prmtop.createSystem(nonbondedMethod=PME, nonbondedCutoff=1*nanometer, constraints=HBonds)
 integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
-    2.0*unit.femtoseconds)
+    1.0*unit.femtoseconds)
 
 platform = mm.Platform.getPlatformByName('CUDA')
 simulation = app.Simulation(prmtop.topology, system, integrator, platform)
@@ -126,7 +126,7 @@ st = simulation.context.getState(getPositions=True,getEnergy=True)
 print("Potential energy before minimization is %s" % st.getPotentialEnergy())
 
 print('Minimizing...')
-simulation.minimizeEnergy(maxIterations=1000)
+simulation.minimizeEnergy(maxIterations=100)
 
 st = simulation.context.getState(getPositions=True,getEnergy=True)
 print("Potential energy after minimization is %s" % st.getPotentialEnergy())
