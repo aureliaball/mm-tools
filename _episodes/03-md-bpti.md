@@ -56,7 +56,8 @@ For this exercise, we will be using the Amber ff14SB protein force field.
 > bond bpti.5.SG bpti.55.SG
 > bond bpti.14.SG bpti.38.SG
 > bond bpti.30.SG bpti.51.SG
-> saveamberparm bpti bpti_gas.prmtop bpti_gas.inpcrd savepdb bpti bpti_gas.pdb
+> saveamberparm bpti bpti_gas.prmtop bpti_gas.inpcrd
+> savepdb bpti bpti_gas.pdb
 > solvateoct bpti TIP3PBOX 10.0
 > addionsrand bpti Cl- 0
 > addionsrand bpti Na+ 0
@@ -64,7 +65,14 @@ For this exercise, we will be using the Amber ff14SB protein force field.
 > quit
 > ~~~
 >
-> - Back in the Terminal Window, enter the following command.
+> - Back in the Terminal Window, copy the force field modification file to your current directory:
+> 
+> ~~~
+> cp /data/chem_shared/tutorial_files/frcmod.ff99SB_w_dih ./
+> ~~~
+> {: .language-bash}
+> 
+> Enter the following command.
 >
 > ~~~
 > tleap -f setup_BPTI.leap
