@@ -24,6 +24,8 @@ In this lesson we will carry out an MD simulation of the protein bovine pancreat
 
 ## Starting structure and simulation preliminaries
 
+Before you start, sign on to the pugetsound cluster.
+
 The X-ray crystal structures (and NMR-derived structures) of many folded proteins can be found at the [Protein Data Bank](http://www.rcsb.org). Every structure deposited in the PDB has a four character code; for this exercise we will use the structure 4PTI. This structure was deposited in 1982 (!), but has excellent resolution (1.5 Å) and provides a good starting point for our simulation.
 
 Taking a structure from the PDB and getting it ready for simulation is not a trivial task. For us to carry out a gas phase simulation of this protein, crystallographic waters must be removed and disulfide bonds between various cysteine residues must be specified. Then, to run a simulation of this protein in water, we must add in water molecules. Thankfully there are applications that help to automate this task. In this particular case, the application pdb4amber (part of the [AmberTools distribution](http://www.ambermd.org) was used to generate an appropriate [pdb file](../data/bpti_gas.pdb). Then another AmberTools application, tleap, was used to create parameter/topology files and starting coordinate files that can be understood by Amber or OpenMM.  If you want to learn more about how to use these tools, see the yellow box below, but you can also just copy all five of these files from the chem_shared directory. 
