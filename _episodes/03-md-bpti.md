@@ -113,8 +113,8 @@ import time as time
 Specify the parameter/topology file and the initial coordinate file.  Again, make sure the files you downloaded are in the same directory as the jupyter notebook where you are running the simulation.  
 
 ~~~
-prmtop = app.AmberPrmtopFile('BPTI_gas.prmtop')
-inpcrd = app.AmberInpcrdFile('BPTI_gas.inpcrd')
+prmtop = app.AmberPrmtopFile('bpti_gas.prmtop')
+inpcrd = app.AmberInpcrdFile('bpti_gas.inpcrd')
 
 system = prmtop.createSystem(nonbondedMethod=PME, nonbondedCutoff=1*nanometer, constraints=HBonds)
 integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
