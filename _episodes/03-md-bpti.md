@@ -300,7 +300,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> import nglview as ngl
 >> %matplotlib inline
 >>
->> traj = md.load('BPTI_sim.dcd', top='BPTI_gas.prmtop')
+>> traj = md.load('bpti_gas_sim_1.dcd', top='bpti_gas.prmtop')
 >> atoms, bonds = traj.topology.to_dataframe()
 >> atoms[:10] # there are many more!
 >>
