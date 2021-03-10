@@ -116,7 +116,7 @@ Specify the parameter/topology file and the initial coordinate file.  Again, mak
 prmtop = app.AmberPrmtopFile('bpti_gas.prmtop')
 inpcrd = app.AmberInpcrdFile('bpti_gas.inpcrd')
 
-system = prmtop.createSystem()
+system = prmtop.createSystem(constraints=app.HBonds)
 integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
     1.0*unit.femtoseconds)
 
