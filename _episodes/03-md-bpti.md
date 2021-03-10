@@ -116,7 +116,7 @@ Specify the parameter/topology file and the initial coordinate file.  Again, mak
 prmtop = app.AmberPrmtopFile('bpti_gas.prmtop')
 inpcrd = app.AmberInpcrdFile('bpti_gas.inpcrd')
 
-system = prmtop.createSystem(nonbondedMethod=PME, nonbondedCutoff=1*nanometer, constraints=HBonds)
+system = prmtop.createSystem()
 integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
     1.0*unit.femtoseconds)
 
@@ -180,7 +180,7 @@ tinit=time.time()
 print('Running Production...')
 simulation.step(9000)
 tfinal=time.time()
-simulation.saveState('BPTI_gas_sim_1.xml'))
+simulation.saveState('BPTI_gas_sim_1.xml')
 print('Done!')
 print('Time required for simulation:', tfinal-tinit, 'seconds')
 ~~~
