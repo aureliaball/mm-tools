@@ -61,7 +61,7 @@ Usually a simulation protocol follow this general procedure:
 We will now use OpenMM to do a molecular dynamics simulation of the ethane and butane molecules we prepared in the previous lesson. It's important to note at this point that molecular dynamics simulations can be performed using a number of softwares. However, we will be running a simulation with a program called OpenMM. OpenMM has the advantage of being scriptable with Python.
 
 First, sign on to pugetsound and copy the files `ethane.pdb` and `butane.pdb` from `/data/chem_shared/tutorial_files/`. 
-Sign on to a compute node by typing `srun --partition=Legacy_Nodes --pty --nodes=1 --tasks-per-node=1 --gres=gpu:1 --time=10:00:00 --wait=0 --export=ALL /bin/bash`. Note the node you are signed on to by looking at the prompt (it should be a number from 1 to 8).
+Sign on to a compute node by typing `srun --partition=Legacy_Nodes --pty --nodes=1 --tasks-per-node=1 --gres=gpu:1 --time=10:00:00 --share --wait=0 --export=ALL /bin/bash`. Note the node you are signed on to by looking at the prompt (it should be a number from 1 to 8).
 
 Load the latest version of python by typing `module load anaconda3/python-3.7`.
 Open a jupyter notebook by typing `jupyter notebook --no-browser`. Note the local host number. In a separate terminal window on your local computer, log in to that jupyter notebook on the compute node by typing `ssh -L 8157:127.0.0.1:#### kball@cnode00#` where '####' is the local host number of your jupyter notebook and where 'cnode00#' is whichever node you are running the jupyter notebook on.
