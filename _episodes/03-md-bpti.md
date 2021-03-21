@@ -386,6 +386,25 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> plt.ylabel(r'$\omega$ (degrees)')
 >> plt.show()
 >> ~~~
+>> 
+>> Exercise 4
+>> ~~~
+>> from simtk.openmm import app
+>> import simtk.openmm as mm
+>> from simtk import unit
+>> from sys import stdout
+>> import time as time 
+>>
+>> # Set up the system
+>> prmtop = app.AmberPrmtopFile('bpti_wat.prmtop')
+>> inpcrd = app.AmberInpcrdFile('bpti_wat.inpcrd')
+>> 
+>> num_protein_res = 58 # change this to match the number of residues in your protein
+>> # find the number of atoms in the protein
+>> num_protein_atoms = prmtop.topology._chains[0]._residues[num_protein_res]._atoms[0].index
+>> num_protein_atoms
+>> 
+>> ~~~
 >> {: .language-python}
 > {: .solution}
 {: .challenge}
