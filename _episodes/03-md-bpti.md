@@ -508,6 +508,49 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> traj.save_dcd('stripped/bpti_wat_sim_1_stripped.dcd')
 >> 
 >> ~~~
+>> To continue this simulation in a new notebook
+>> ~~~
+>> from simtk.openmm import app
+>> import simtk.openmm as mm
+>> from simtk import unit
+>> from sys import stdout
+>> import time as time 
+>> 
+>> # Create system using the original prmtop file
+>> prmtop = app.AmberPrmtopFile('bpti_wat.prmtop')
+>> system = prmtop.createSystem(nonbondedMethod=app.PME, nonbondedCutoff=1*unit.nanometer, 
+>>                              constraints=app.HBonds) # new parameters for in water
+>> system.addForce(mm.MonteCarloBarostat(1.013*unit.bar, 298.15*unit.kelvin)) # hold pressure constant
+>> integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
+>>     2.0*unit.femtoseconds)
+>> 
+>> platform = mm.Platform.getPlatformByName('CUDA')
+>> simulation = app.Simulation(prmtop.topology, system, integrator, platform)
+>> 
+>> # Load in the saved state from the end of the previous simulation
+>> simulation.loadState('bpti_wat_sim_1.xml')
+>> 
+>> # Run production simulation
+>> simulation.reporters.append(app.DCDReporter('bpti_wat_sim_2.dcd', 5000)) #only save structure every 10 ps
+>> # You can change how often the output is printed
+>> simulation.reporters.append(app.StateDataReporter(stdout, 5000, step=True, time=True,
+>>     potentialEnergy=True, temperature=True, density=True, speed=True, separator='\t'))
+>> 
+>> tinit=time.time()
+>> print('Running Production...')
+>> simulation.step(500000) # run simulation for 1 ns
+>> tfinal=time.time()
+>> simulation.saveState('bpti_wat_sim_2.xml')
+>> print('Done!')
+>> print('Time required for simulation:', tfinal-tinit, 'seconds')
+>> 
+>> # Load in trajectory and remove solvent
+>> import mdtraj as md
+>> traj = md.load('bpti_wat_sim_2.dcd', top='bpti_wat.prmtop')
+>> traj = traj.atom_slice(traj.top.select('protein'))
+>> traj.save_dcd('stripped/bpti_wat_sim_2_stripped.dcd')
+>> 
+>> ~~~
 >> {: .language-python}
 > {: .solution}
 {: .challenge}
