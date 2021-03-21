@@ -404,6 +404,23 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> num_protein_atoms = prmtop.topology._chains[0]._residues[num_protein_res]._atoms[0].index
 >> num_protein_atoms
 >> 
+>> system = prmtop.createSystem(constraints=app.HBonds, nonbondedMethod=app.PME,
+>>                             nonbondedCutoff=1*unit.nanometer) # new parameters for in water
+>> integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
+>>     1.0*unit.femtoseconds)
+>> platform = mm.Platform.getPlatformByName('CUDA')
+>> 
+>> # Add restraints on all protein atoms
+>> force = mm.CustomExternalForce("k*periodicdistance(x,y,z,x0,y0,z0)^2")
+>> force.addGlobalParameter("k", 10.0*unit.kilocalories_per_mole/(unit.angstroms**2))
+>> force.addPerParticleParameter("x0")
+>> force.addPerParticleParameter("y0")
+>> force.addPerParticleParameter("z0")
+>> 
+>> for i in range(num_protein_atoms):
+>>     force.addParticle(i, inpcrd.getPositions()[i])
+>>     
+>> force_index = system.addForce(force)
 >> ~~~
 >> {: .language-python}
 > {: .solution}
