@@ -421,6 +421,92 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >>     force.addParticle(i, inpcrd.getPositions()[i])
 >>     
 >> force_index = system.addForce(force)
+>> 
+>> # Create simulation
+>> simulation = app.Simulation(prmtop.topology, system, integrator, platform)
+>> simulation.context.setPositions(inpcrd.positions)
+>> if inpcrd.boxVectors is not None:
+>>     simulation.context.setPeriodicBoxVectors(*inpcrd.boxVectors)
+>>     
+>> # Minimize system
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Potential energy before minimization is %s" % st.getPotentialEnergy())
+>> 
+>> print('Minimizing...')
+>> simulation.minimizeEnergy(maxIterations=1000) # minimize for 1000 steps
+>> 
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Potential energy after minimization is %s" % st.getPotentialEnergy())
+>> 
+>> # Equilibrate system with restraints on the protein
+>> simulation.context.setVelocitiesToTemperature(298.15*unit.kelvin)
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Kinetic energy before equilibration is %s" % st.getKineticEnergy())
+>> 
+>> print('Equilibrating...')
+>> simulation.step(50000) # equilibrate for 100 ps
+>> print('Done!')
+>> 
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Kinetic energy after equilibration is %s" % st.getKineticEnergy())
+>> 
+>> # Remove the restraints on the protein
+>> system.removeForce(force_index)
+>> # Hold pressure constant
+>> system.addForce(mm.MonteCarloBarostat(1.013*unit.bar, 298.15*unit.kelvin))
+>> 
+>> # Recreate simulation with system without restraints
+>> integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
+>>     1.0*unit.femtoseconds)
+>> simulation = app.Simulation(prmtop.topology, system, integrator, platform)
+>> simulation.context.setState(st)
+>> 
+>> # Minimize system without restraints
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Potential energy before minimization is %s" % st.getPotentialEnergy())
+>> 
+>> print('Minimizing...')
+>> simulation.minimizeEnergy(maxIterations=1000) # minimize for 1000 steps
+>> 
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Potential energy after minimization is %s" % st.getPotentialEnergy())
+>> 
+>> # Equilibrate system without restraints on the protein
+>> simulation.context.setVelocitiesToTemperature(298.15*unit.kelvin)
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Box volume before equilibration is %s" % st.getPeriodicBoxVolume())
+>> 
+>> print('Equilibrating...')
+>> simulation.step(50000) # equilibrate for 100 ps
+>> print('Done!')
+>> 
+>> st = simulation.context.getState(getPositions=True,getEnergy=True)
+>> print("Box volume after equilibration is %s" % st.getPeriodicBoxVolume())
+>> 
+>> # Run production simulation
+>> 
+>> #only save structure every 10 ps
+>> simulation.reporters.append(app.DCDReporter('bpti_wat_sim_1.dcd', 5000))
+>> # Print every 10 ps (you can change this frequency)
+>> simulation.reporters.append(app.StateDataReporter(stdout, 5000, step=True, time=True,
+>>     potentialEnergy=True, temperature=True, density=True, speed=True, separator='\t'))
+>> 
+>> tinit=time.time()
+>> print('Running Production...')
+>> simulation.step(500000) # run simulation for 1 ns
+>> tfinal=time.time()
+>> simulation.saveState('bpti_wat_sim_1.xml')
+>> print('Done!')
+>> print('Time required for simulation:', tfinal-tinit, 'seconds')
+>> 
+>> # Load in trajectory and remove solvent
+>> # Before running this, create a directory called 'stripped' inside the directory with this notebook
+>> 
+>> import mdtraj as md
+>> traj = md.load('bpti_wat_sim_1.dcd', top='bpti_wat.prmtop')
+>> traj = traj.atom_slice(traj.top.select('protein'))
+>> traj.save_dcd('stripped/bpti_wat_sim_1_stripped.dcd')
+>> 
 >> ~~~
 >> {: .language-python}
 > {: .solution}
