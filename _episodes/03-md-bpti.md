@@ -407,7 +407,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> system = prmtop.createSystem(constraints=app.HBonds, nonbondedMethod=app.PME,
 >>                             nonbondedCutoff=1*unit.nanometer) # new parameters for in water
 >> integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
->>     1.0*unit.femtoseconds)
+>>     2.0*unit.femtoseconds)
 >> platform = mm.Platform.getPlatformByName('CUDA')
 >> 
 >> # Add restraints on all protein atoms
