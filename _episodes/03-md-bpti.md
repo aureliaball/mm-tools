@@ -407,7 +407,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> system = prmtop.createSystem(constraints=app.HBonds, nonbondedMethod=app.PME,
 >>                             nonbondedCutoff=1*unit.nanometer) # new parameters for in water
 >> integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
->>     2.0*unit.femtoseconds)
+>>     2.0*unit.femtoseconds) # run at 298.15 K with a time step of 2 fs
 >> platform = mm.Platform.getPlatformByName('CUDA')
 >> 
 >> # Add restraints on all protein atoms
@@ -457,7 +457,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> 
 >> # Recreate simulation with system without restraints
 >> integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
->>     1.0*unit.femtoseconds)
+>>     2.0*unit.femtoseconds) # run at 298.15 K with a time step of 2 fs
 >> simulation = app.Simulation(prmtop.topology, system, integrator, platform)
 >> simulation.context.setState(st)
 >> 
@@ -522,7 +522,7 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >>                              constraints=app.HBonds) # new parameters for in water
 >> system.addForce(mm.MonteCarloBarostat(1.013*unit.bar, 298.15*unit.kelvin)) # hold pressure constant
 >> integrator = mm.LangevinIntegrator(298.15*unit.kelvin, 1.0/unit.picoseconds,
->>     2.0*unit.femtoseconds)
+>>     2.0*unit.femtoseconds) # run at 298.15 K with a time step of 2 fs
 >> 
 >> platform = mm.Platform.getPlatformByName('CUDA')
 >> simulation = app.Simulation(prmtop.topology, system, integrator, platform)
