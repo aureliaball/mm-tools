@@ -504,8 +504,8 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> 
 >> import mdtraj as md
 >> traj = md.load('bpti_wat_sim_1.dcd', top='bpti_wat.prmtop')
->> traj = traj.atom_slice(traj.top.select('protein'))
->> traj.save_dcd('stripped/bpti_wat_sim_1_stripped.dcd')
+>> stripped_traj = traj.atom_slice(traj.top.select('resSeq 0 to 57')) # change this to be one less than the number of residues in your protein
+>> stripped_traj.save_dcd('stripped/bpti_wat_sim_1_stripped.dcd')
 >> 
 >> ~~~
 >> To continue this simulation in a new notebook
@@ -515,6 +515,8 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> from simtk import unit
 >> from sys import stdout
 >> import time as time 
+>> 
+>> num_protein_res = 58 # change this to match the number of residues in your protein
 >> 
 >> # Create system using the original prmtop file
 >> prmtop = app.AmberPrmtopFile('bpti_wat.prmtop')
@@ -547,8 +549,8 @@ Your overall goal in the exercise below is to reproduce – in a rough way – F
 >> # Load in trajectory and remove solvent
 >> import mdtraj as md
 >> traj = md.load('bpti_wat_sim_2.dcd', top='bpti_wat.prmtop')
->> traj = traj.atom_slice(traj.top.select('protein'))
->> traj.save_dcd('stripped/bpti_wat_sim_2_stripped.dcd')
+>> stripped_traj = traj.atom_slice(traj.top.select('resSeq 0 to 57')) # change this to be one less than the number of residues in your protein
+>> stripped_traj.save_dcd('stripped/bpti_wat_sim_2_stripped.dcd')
 >> 
 >> ~~~
 >> {: .language-python}
